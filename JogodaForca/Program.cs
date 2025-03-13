@@ -75,6 +75,7 @@
                     Console.Clear();
                     Console.WriteLine("----------------------------------------------------");
                     Console.WriteLine("Jogo da Forca");
+                    Console.WriteLine("DICA: ANIMAL");
                     Console.WriteLine("----------------------------------------------------");
                     Console.WriteLine(" ___________        ");
                     Console.WriteLine(" |/        |        ");
@@ -145,7 +146,7 @@
                         Console.WriteLine("Jogo da Forca");
                         Console.WriteLine("----------------------------------------------------");
                         Console.WriteLine(" ___________        ");
-                        Console.WriteLine(" |/        |        ");
+                        Console.WriteLine(" |/       |        ");
                         Console.WriteLine(" |        O          ");
                         Console.WriteLine(" |       /x\\        ");
                         Console.WriteLine(" |        x          ");
