@@ -29,7 +29,7 @@ git clone https://github.com/xleonardoxmed/JogodaForca.ConsoleApp.git
 ```
 Navegue até a pasta raiz da solução
 ```
-cd jogoDeAdivinhacao.ConsoleApp
+cd jogodaForca.ConsoleApp
 ```
 Restaure as dependências
 ```
@@ -37,7 +37,7 @@ dotnet restore
 ```
 Navegue até a pasta do projeto
 ```
-cd jogoDeAdivinhacao.ConsoleApp
+cd jogodaForca.ConsoleApp
 ```
 Execute o projeto
 ```
