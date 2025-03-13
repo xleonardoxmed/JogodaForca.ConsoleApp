@@ -25,11 +25,11 @@ O jogo chega ao fim quando o jogador acerta todas as letras ou erra cinco vezes.
 
 Clone o Repositório
 ```
-git clone 
+git clone https://github.com/xleonardoxmed/JogodaForca.ConsoleApp.git
 ```
 Navegue até a pasta raiz da solução
 ```
-
+cd jogoDeAdivinhacao
 ```
 Restaure as dependências
 ```
@@ -37,7 +37,7 @@ dotnet restore
 ```
 Navegue até a pasta do projeto
 ```
-
+cd jogoDeAdivinhacao.ConsoleApp
 ```
 Execute o projeto
 ```
