@@ -37,7 +37,7 @@ dotnet restore
 ```
 Navegue até a pasta do projeto
 ```
-cd JogodaForca.ConsoleApp
+cd JogodaForca
 ```
 Execute o projeto
 ```
