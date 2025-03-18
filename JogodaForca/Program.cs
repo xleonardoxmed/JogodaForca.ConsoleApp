@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.ConstrainedExecution;
 
 namespace JogodaForca
 {
@@ -11,49 +12,16 @@ namespace JogodaForca
             {
                string palavraMagica = Geradores();
                (string letrasEncontradasCompleta, int condicao, int quantidadedeErros) = Formatacao(palavraMagica);
-
-                    if (condicao == 1)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine($"Você acertou! Era: {palavraMagica}, parabéns!");
-                        Console.WriteLine("----------------------------------------------------");                     
-                    }
-
-                    else if (condicao == -1)
-                    {
-                        quantidadedeErros = 5;
-                        Console.Clear();
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine("Jogo da Forca");
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine(" ___________        ");
-                        Console.WriteLine(" |/       |        ");
-                        Console.WriteLine(" |        O          ");
-                        Console.WriteLine(" |       /x\\        ");
-                        Console.WriteLine(" |        x          ");
-                        Console.WriteLine(" |       / \\        ");
-                        Console.WriteLine(" |                  ");
-                        Console.WriteLine(" |                  ");
-                        Console.WriteLine("_|____              ");
-                        Console.WriteLine("PALAVRA: " + letrasEncontradasCompleta);
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine("Erros do Jogador: " + quantidadedeErros);
-                        Console.WriteLine("----------------------------------------------------");
-                        Console.WriteLine($"Você errou a palavra! Era: {palavraMagica}, TENTE NOVAMENTE!");
-                        Console.WriteLine("----------------------------------------------------");
-                    }
-
+               int fim = Finais(condicao, quantidadedeErros, palavraMagica);
+                if (fim != 0)
+                {
+                    Console.WriteLine("Deseja Continuar? (S/N)");
+                    string final = Console.ReadLine()!.ToLower();
+                    if (final != "s")
+                        denovo = false;
                 }
-
-                Console.WriteLine("Deseja Continuar? (S/N)");
-                string continuar = Console.ReadLine()!.ToLower();
-
-                if (continuar != "s")
-                    denovo = false;
-
             }
-
+        }
           static string Geradores()
         {
             string[] palavras =
@@ -96,15 +64,18 @@ namespace JogodaForca
         {
             int condicao = 0; // 1 venceu, -1 perdeu
             int quantidadedeErros = 0;
+
             char[] letrasEncontradas = new char[palavraMagica.Length];
-            string letrasEncontradasCompleta = string.Join(" ", letrasEncontradas);
-            
+           
+            for (int caractereAtual = 0; caractereAtual < letrasEncontradas.Length; caractereAtual++)
+            {
+                letrasEncontradas[caractereAtual] = '_';
+            }
+            string letrasEncontradasCompleta = "";
+
             while (condicao == 0)
             {
-                for (int caractereAtual = 0; caractereAtual < letrasEncontradas.Length; caractereAtual++)
-                {
-                    letrasEncontradas[caractereAtual] = '_';
-                }
+                letrasEncontradasCompleta = string.Join(" ", letrasEncontradas);
 
                 bool letraFoiEncontrada = false;
                
@@ -173,6 +144,43 @@ namespace JogodaForca
 
             }
             return (letrasEncontradasCompleta, condicao, quantidadedeErros);
+        }
+          static int Finais(int condicao, int quantidadedeErros, string palavraMagica)
+        {
+            int fim = 0;
+            if (condicao == 1)
+            {
+                fim = 1;
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine($"Você acertou! Era: {palavraMagica}, parabéns!");
+                Console.WriteLine("----------------------------------------------------");
+            }
+
+            else if (condicao == -1)
+            {
+                fim = -1;
+                quantidadedeErros = 5;
+                Console.Clear();
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("Jogo da Forca");
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine(" ___________        ");
+                Console.WriteLine(" |/       |        ");
+                Console.WriteLine(" |        O          ");
+                Console.WriteLine(" |       /x\\        ");
+                Console.WriteLine(" |        x          ");
+                Console.WriteLine(" |       / \\        ");
+                Console.WriteLine(" |                  ");
+                Console.WriteLine(" |                  ");
+                Console.WriteLine("_|____              ");
+                Console.WriteLine("PALAVRA: " + palavraMagica);
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("Erros do Jogador: " + quantidadedeErros);
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine($"Você errou a palavra! Era: {palavraMagica}, TENTE NOVAMENTE!");
+                Console.WriteLine("----------------------------------------------------");
+            }
+            return fim;
         }
 
 
